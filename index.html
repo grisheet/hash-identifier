@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hash Identifier</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid #30363d;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #58a6ff;
+      margin-bottom: 12px;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #8b949e;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .badges {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      color: #58a6ff;
+    }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    section { margin-bottom: 48px; }
+    h2 {
+      font-size: 1.6rem;
+      color: #e6edf3;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #21262d;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .feature-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .feature-card h3 { color: #58a6ff; margin-bottom: 8px; font-size: 1rem; }
+    .feature-card p { color: #8b949e; font-size: 0.9rem; }
+    pre {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      color: #e6edf3;
+    }
+    code { font-family: 'Courier New', monospace; }
+    .btn {
+      display: inline-block;
+      background: #238636;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-right: 12px;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #2ea043; }
+    .btn-secondary {
+      background: #21262d;
+      border: 1px solid #30363d;
+    }
+    .btn-secondary:hover { background: #30363d; }
+    .hash-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .hash-tag {
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      color: #79c0ff;
+      font-family: monospace;
+    }
+    footer {
+      text-align: center;
+      padding: 32px;
+      border-top: 1px solid #21262d;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hash Identifier</h1>
+    <p>A production-grade Python tool for identifying cryptographic hash types and cracking them via dictionary attacks.</p>
+    <div class="badges">
+      <span class="badge">Python 3.8+</span>
+      <span class="badge">30+ Hash Types</span>
+      <span class="badge">CLI + API</span>
+      <span class="badge">MIT License</span>
+    </div>
+    <div style="margin-top:28px;">
+      <a href="https://github.com/grisheet/hash-identifier" class="btn">View on GitHub</a>
+      <a href="https://github.com/grisheet/hash-identifier/archive/refs/heads/main.zip" class="btn btn-secondary">Download ZIP</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Hash Detection</h3>
+          <p>Identifies 30+ hash types using pattern matching and length heuristics.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Hash Cracking</h3>
+          <p>Dictionary-based cracking for MD5, SHA-1, SHA-256, and more.</p>
+        </div>
+        <div class="feature-card">
+          <h3>CLI Interface</h3>
+          <p>Simple command-line tool for quick hash identification on the fly.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Python API</h3>
+          <p>Import and use directly in your Python scripts and applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Quick Start</h2>
+      <pre><code># Clone the repo
+git clone https://github.com/grisheet/hash-identifier.git
+cd hash-identifier
+
+# Identify a hash
+python -m hash_identifier identify 5d41402abc4b2a76b9719d911017c592
+
+# Crack a hash with a wordlist
+python -m hash_identifier crack 5d41402abc4b2a76b9719d911017c592 --wordlist wordlist.txt</code></pre>
+    </section>
+
+    <section>
+      <h2>Python API</h2>
+      <pre><code>from hash_identifier import identify_hash, crack_hash
+
+# Identify hash type
+results = identify_hash("5d41402abc4b2a76b9719d911017c592")
+for r in results:
+    print(r.hash_name, r.confidence)
+
+# Crack a hash
+result = crack_hash("5d41402abc4b2a76b9719d911017c592", "wordlist.txt")
+if result:
+    print("Cracked:", result.plaintext)</code></pre>
+    </section>
+
+    <section>
+      <h2>Supported Hash Types</h2>
+      <div class="hash-tags">
+        <span class="hash-tag">MD5</span>
+        <span class="hash-tag">SHA-1</span>
+        <span class="hash-tag">SHA-224</span>
+        <span class="hash-tag">SHA-256</span>
+        <span class="hash-tag">SHA-384</span>
+        <span class="hash-tag">SHA-512</span>
+        <span class="hash-tag">SHA3-256</span>
+        <span class="hash-tag">SHA3-512</span>
+        <span class="hash-tag">bcrypt</span>
+        <span class="hash-tag">Argon2</span>
+        <span class="hash-tag">scrypt</span>
+        <span class="hash-tag">NTLM</span>
+        <span class="hash-tag">LM</span>
+        <span class="hash-tag">MySQL323</span>
+        <span class="hash-tag">MySQL41</span>
+        <span class="hash-tag">CRC32</span>
+        <span class="hash-tag">Cisco IOS</span>
+        <span class="hash-tag">Drupal</span>
+        <span class="hash-tag">WordPress</span>
+        <span class="hash-tag">RIPEMD-160</span>
+        <span class="hash-tag">Whirlpool</span>
+        <span class="hash-tag">BLAKE2</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built by <a href="https://github.com/grisheet" style="color:#58a6ff;">grisheet</a> &mdash; MIT License</p>
+  </footer>
+</body>
+</html>
